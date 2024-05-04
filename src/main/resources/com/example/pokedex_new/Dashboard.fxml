@@ -98,7 +98,7 @@
                                     <Insets />
                                  </HBox.margin>
                                         </Label>
-                              <Label fx:id="attack" layoutX="10.0" layoutY="10.0" prefHeight="42.0" prefWidth="36.0" text="84" textFill="WHITE">
+                              <Label fx:id="attack" layoutX="10.0" layoutY="10.0" prefHeight="42.0" prefWidth="70.0" text="84" textFill="WHITE">
                                  <font>
                                     <Font name="Cambria" size="24.0" />
                                  </font>
@@ -121,7 +121,7 @@
                                                 <Font name="Cambria" size="24.0" />
                                             </font>
                                         </Label>
-                              <Label fx:id="defense" prefHeight="42.0" prefWidth="36.0" text="78" textFill="WHITE">
+                              <Label fx:id="defense" prefHeight="42.0" prefWidth="62.0" text="78" textFill="WHITE">
                                  <font>
                                     <Font name="Cambria" size="24.0" />
                                  </font>
@@ -134,7 +134,7 @@
                               <Insets />
                            </VBox.margin>
                                 </HBox>
-                                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="270.0" styleClass="add-btn" stylesheets="@style.css" text="DETAILS" textFill="#828282">
+                                <Button mnemonicParsing="false" onMouseClicked="#onDetailesClicked" prefHeight="50.0" prefWidth="270.0" styleClass="add-btn" stylesheets="@style.css" text="DETAILS" textFill="#828282">
                                     <VBox.margin>
                                         <Insets bottom="20.0" top="30.0" />
                                     </VBox.margin>
@@ -177,7 +177,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                             <children>
-                                <ScrollPane fx:id="scroll" prefHeight="570.0" prefWidth="785.0" styleClass="transparent" stylesheets="@style.css">
+                                <ScrollPane fx:id="scroll" onMouseClicked="#onDetailesClicked" prefHeight="570.0" prefWidth="785.0" styleClass="transparent" stylesheets="@style.css">
                                     <content>
                                         <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
                                             <rowConstraints>
