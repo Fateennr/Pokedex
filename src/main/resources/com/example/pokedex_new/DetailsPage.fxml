@@ -1,11 +1,191 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pokedex_new.DetailsController">
-   <children>
-      <ImageView fx:id="DetailsImg" fitHeight="179.0" fitWidth="214.0" layoutX="200.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true" />
-   </children>
-</AnchorPane>
+<ScrollPane fitToWidth="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pokedex_new.DetailsController">
+   <content>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1515.0" prefWidth="918.0">
+         <children>
+            <ImageView fx:id="DetailsImg" fitHeight="250.0" fitWidth="250.0" layoutX="51.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@charizard.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="PokemonName" alignment="CENTER" layoutX="315.0" layoutY="25.0" prefHeight="58.0" prefWidth="287.0" text="Charizard">
+               <font>
+                  <Font name="ArtifaktElement-Heavy" size="42.0" />
+               </font>
+            </Label>
+            <HBox layoutX="-1.0" layoutY="117.0" prefHeight="168.0" prefWidth="920.0">
+               <children>
+                  <Label fx:id="Bio" prefHeight="168.0" prefWidth="879.0" translateX="23.0" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <VBox layoutX="420.0" layoutY="285.0" prefHeight="406.0" prefWidth="429.0">
+               <children>
+                  <GridPane prefHeight="407.0" prefWidth="270.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="298.40003662109376" minWidth="10.0" prefWidth="228.8" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.20001220703125" minWidth="10.0" prefWidth="201.59999999999997" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label prefHeight="39.0" prefWidth="88.0" text="Type :">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="82.0" prefWidth="230.0" text="Height :" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="30.0" prefWidth="108.0" text="Weight :" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="39.0" prefWidth="199.0" text="Speacial Ability:" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="39.0" prefWidth="160.0" text="Catch Rate :" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                        <HBox prefHeight="100.0" prefWidth="200.0" />
+                        <Rectangle id="typerect" fx:id="TypeRect" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="48.0" strokeType="INSIDE" styleClass="typerect" width="116.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER">
+                           <GridPane.margin>
+                              <Insets left="40.0" />
+                           </GridPane.margin>
+                        </Rectangle>
+                        <Label fx:id="TypeFont" alignment="CENTER" prefHeight="27.0" prefWidth="205.0" text="FIRE" textFill="#ece3e3" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="HeightInfoText" alignment="CENTER" prefHeight="30.0" prefWidth="215.0" text="(1234)" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="WeightText" alignment="CENTER" prefHeight="30.0" prefWidth="215.0" text="(1234)" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="SpAbilityText" alignment="CENTER" prefHeight="30.0" prefWidth="215.0" text="(1234)" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="CatchRateText" alignment="CENTER" prefHeight="30.0" prefWidth="215.0" text="(1234)" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+            <GridPane layoutX="58.0" layoutY="779.0" prefHeight="324.0" prefWidth="550.0">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="77.20001220703125" minWidth="10.0" prefWidth="44.599999999999994" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.80001220703124" minWidth="10.0" prefWidth="47.19997558593748" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="335.2000244140625" minWidth="10.0" prefWidth="319.2000244140625" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="87.39996337890625" minWidth="2.5999755859375" prefWidth="49.60002441406249" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="89.20001220703125" minWidth="10.0" prefWidth="47.5999755859375" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="57.0" text="Attack" GridPane.rowIndex="1" />
+                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="57.0" text="HP" />
+                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="57.0" text="Defense" GridPane.rowIndex="2" />
+                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="57.0" text="Sp. Atk" GridPane.rowIndex="3" />
+                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="57.0" text="Sp. Def" GridPane.rowIndex="4" />
+                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="57.0" text="Speed" GridPane.rowIndex="5" />
+                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="57.0" text="Min" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                  <Label fx:id="HpVal" alignment="CENTER" prefHeight="18.0" prefWidth="57.0" text="100" GridPane.columnIndex="1" />
+                  <Label fx:id="AtkVal" alignment="CENTER" prefHeight="18.0" prefWidth="57.0" text="85" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="DefVal" alignment="CENTER" prefHeight="18.0" prefWidth="57.0" text="78" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="SpAtkVal" alignment="CENTER" prefHeight="18.0" prefWidth="57.0" text="100" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="SpDefVal" alignment="CENTER" prefHeight="18.0" prefWidth="57.0" text="100" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="SpeedVal" alignment="CENTER" prefHeight="18.0" prefWidth="57.0" text="85" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label fx:id="TotalVal" alignment="CENTER" prefHeight="18.0" prefWidth="57.0" text="540" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Rectangle fx:id="HpBar" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="26.0" strokeType="INSIDE" styleClass="hprect" width="183.0" GridPane.columnIndex="2" />
+                  <Rectangle fx:id="AttackBar" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="26.0" strokeType="INSIDE" styleClass="atkrect" width="323.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Rectangle fx:id="DefBar" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="26.0" strokeType="INSIDE" styleClass="defrect" width="230.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Rectangle fx:id="SpAtkBar" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="26.0" strokeType="INSIDE" styleClass="spatckrect" width="305.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Rectangle fx:id="SpDefBar" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="26.0" strokeType="INSIDE" styleClass="spdefrect" width="234.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Rectangle fx:id="SpeedBar" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="26.0" strokeType="INSIDE" styleClass="speedrect" width="316.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Rectangle fx:id="Totalbar" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="26.0" strokeType="INSIDE" styleClass="totalrect" width="309.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="26.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="57.0" text="Max" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="57.0" text="Total" GridPane.rowIndex="6" />
+               </children>
+            </GridPane>
+            <HBox alignment="CENTER" layoutX="51.0" layoutY="1245.0" prefHeight="226.0" prefWidth="839.0">
+               <children>
+                  <ImageView fx:id="FirstGenImg" fitHeight="226.0" fitWidth="210.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@detailed/charmander.png" />
+                     </image>
+                  </ImageView>
+                  <Polygon fill="DODGERBLUE" points="0.0, 60.0, 36.79998779296875, 3.199951171875, 0.0, -60.0" strokeType="INSIDE" />
+                  <ImageView fx:id="SecGenImg" fitHeight="226.0" fitWidth="210.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@detailed/charmeleon.png" />
+                     </image>
+                  </ImageView>
+                  <Polygon fill="DODGERBLUE" points="0.0, 60.0, 36.79998779296875, 3.199951171875, 0.0, -60.0" strokeType="INSIDE" />
+                  <ImageView fx:id="ThirdgenImg" fitHeight="226.0" fitWidth="210.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets right="40.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@detailed/charizard.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <PieChart layoutX="593.0" layoutY="792.0" prefHeight="310.0" prefWidth="323.0" />
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>

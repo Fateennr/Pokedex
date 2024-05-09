@@ -2,6 +2,7 @@ package com.example.pokedex_new;
 
 public class Pokemon {
 
+    private static final Pokemon instance = new Pokemon();
 
     private int id;
     private String name;
@@ -30,7 +31,15 @@ public class Pokemon {
 
     private String ability;
 
+    private String bio;
+
     private float catchrate;
+
+
+    public static Pokemon getInstance()
+    {
+        return instance; // carrying the data in between the scenes
+    }
 
 
     public void setColor(String type)
@@ -132,6 +141,9 @@ public class Pokemon {
     public int getTotal() {
         return total;
     }
+    public int getHp() {
+        return  hp;
+    }
 
     public int getAttack() {
 
@@ -141,5 +153,104 @@ public class Pokemon {
     public int getDefense() {
 
         return defense;
+    }
+
+    public void setData(Pokemon pokemon)
+    {
+        id = pokemon.id;
+        attack = pokemon.attack;
+        name = pokemon.name;
+        type = pokemon.type;
+        color = pokemon.color;
+        typecolor = pokemon.typecolor;
+        defense = pokemon.defense;
+        hp = pokemon.hp;
+        sp_atk = pokemon.sp_atk;
+        sp_def = pokemon.sp_def;
+        speed = pokemon.speed;
+        total = pokemon.total;
+        bio = pokemon.bio;
+        System.out.println(pokemon.heightinfo);
+        heightinfo = pokemon.heightinfo;
+        weightinfo = pokemon.weightinfo;
+        species = pokemon.species;
+        ability = pokemon.ability;
+        catchrate = pokemon.catchrate;
+
+    }
+
+    public int getSpecialAttack() {
+        return sp_def;
+    }
+
+    public int getSpecialDefense() {
+        return sp_atk;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public String getAbility() {
+
+        return ability;
+    }
+
+    public String getWeight() {
+        return weightinfo;
+    }
+
+    public float getCatchRate() {
+        return catchrate;
+    }
+
+    public void setBio(String bio)
+    {
+        this.bio = bio;
+    }
+
+    public void setSpecies(String species)
+    {
+        this.species = species;
+    }
+
+    public void setHeightInfo(String heightinfo)
+    {
+        this.heightinfo = heightinfo;
+    }
+
+    public void setWeightInfo(String weightinfo)
+    {
+        this.weightinfo = weightinfo;
+    }
+
+    public void setSpecialAbility(String ability)
+    {
+        this.ability = ability;
+    }
+
+    public void setCatchRate(float catchrate)
+    {
+        this.catchrate = catchrate;
+    }
+
+    public int getid() {
+        return id;
+    }
+
+    public String getSpecies() {
+        return species;
+    }
+
+    public String getHeightinfo() {
+        return heightinfo;
+    }
+
+    public String getHeightInfo() {
+        return heightinfo;
     }
 }
