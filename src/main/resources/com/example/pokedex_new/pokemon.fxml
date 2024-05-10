@@ -31,7 +31,7 @@
                         <Image url="@charizard.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="poketype" alignment="CENTER" prefHeight="34.0" prefWidth="85.0" styleClass="namelabel1" stylesheets="@style.css" text="Fire" textFill="WHITE">
+                  <Label fx:id="poketype" alignment="CENTER" prefHeight="34.0" prefWidth="93.0" styleClass="namelabel1" stylesheets="@style.css" text="Fire" textFill="WHITE">
                      <font>
                         <Font name="Cambria" size="14.0" />
                      </font>

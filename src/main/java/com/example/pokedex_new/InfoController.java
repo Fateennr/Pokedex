@@ -66,7 +66,7 @@ public class InfoController {
             image = new Image(getClass().getResourceAsStream("all/"+ pokemon.getName().toLowerCase() + ".png"));
         } catch (Exception e) {
             // If the image for the specific Pokemon is not found, set default image
-            image = new Image(getClass().getResourceAsStream("all/pikachu.png"));
+            image = new Image(getClass().getResourceAsStream("detailed/logo.png"));
         }
 //        Image image = new Image(getClass().getResourceAsStream("charizard.png"));
         pokepane.setStyle("-fx-background-color: "+ pokemon.getColor() +";");

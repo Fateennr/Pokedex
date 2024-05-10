@@ -31,6 +31,9 @@ import java.util.*;
 public class DashboardController implements Initializable {
 
     @FXML
+    private Label id;
+
+    @FXML
     private Label attack;
 
     @FXML
@@ -144,6 +147,7 @@ public class DashboardController implements Initializable {
 
     private void setChosenPokeomon(Pokemon pokemon)
     {
+        id.setText("#00"+pokemon.getid());
         pokemonnamelabel.setText(pokemon.getName());
         pokemontotallabel.setText(""+ pokemon.getTotal());
         Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("detailed/"+pokemon.getName() + ".png")));
@@ -245,7 +249,7 @@ public class DashboardController implements Initializable {
 
             // Set up the primary stage
             Stage primaryStage = new Stage();
-            primaryStage.setScene(new Scene(root, 800, 600)); // Set the scene with a specific width and height
+            primaryStage.setScene(new Scene(root, 850, 800 )); // Set the scene with a specific width and height
             primaryStage.show(); // Display the window
         } catch (IOException e) {
             e.printStackTrace();
