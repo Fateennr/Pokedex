@@ -14,15 +14,19 @@
 <AnchorPane fx:id="pokepane" onMouseClicked="#click" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pokedex_new.InfoController">
     <children>
       <Pane id="logo" prefHeight="216.0" prefWidth="226.0" styleClass="logo" stylesheets="@style.css" />
-        <VBox alignment="TOP_CENTER" layoutX="63.0" layoutY="8.0" onMousePressed="#click" prefHeight="216.0" prefWidth="226.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox alignment="TOP_CENTER" layoutX="63.0" layoutY="8.0" onMousePressed="#click" prefHeight="216.0" prefWidth="226.0" styleClass="card" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                  <Label fx:id="pokename" alignment="CENTER" prefHeight="42.0" prefWidth="226.0" text="Charizard" textFill="WHITE">
+                  <Label fx:id="pokename" alignment="CENTER" prefHeight="42.0" prefWidth="226.0" stylesheets="@style.css" text="Charizard" textFill="WHITE">
                       <font>
                           <Font name="Cambria Bold" size="24.0" />
                       </font>
                <VBox.margin>
                   <Insets bottom="20.0" top="20.0" />
                </VBox.margin>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="card" />
+               </styleClass>
                   </Label>
             <HBox prefHeight="109.0" prefWidth="226.0">
                <children>
@@ -47,5 +51,6 @@
     <styleClass>
         <String fx:value="fruit-item" />
         <String fx:value="shadow" />
+      <String fx:value="card" />
     </styleClass>
 </AnchorPane>

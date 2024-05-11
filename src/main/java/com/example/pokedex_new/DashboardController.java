@@ -1,6 +1,5 @@
 package com.example.pokedex_new;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -19,7 +19,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import javax.imageio.IIOParam;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -30,8 +29,6 @@ import java.util.*;
 
 public class DashboardController implements Initializable {
 
-    @FXML
-    private Label id;
 
     @FXML
     private Label attack;
@@ -43,10 +40,13 @@ public class DashboardController implements Initializable {
     private Label defense;
 
     @FXML
-    private ImageView pokeImg;
+    private GridPane grid;
 
     @FXML
-    private GridPane grid;
+    private Label id;
+
+    @FXML
+    private ImageView pokeImg;
 
     @FXML
     private Label pokemonnamelabel;
@@ -57,6 +57,12 @@ public class DashboardController implements Initializable {
     @FXML
     private ScrollPane scroll;
 
+    @FXML
+    private TextField searchBar;
+
+    @FXML
+    private Button searchButton;
+
     private List<Pokemon> pokemons = new ArrayList<>();
 
     public MyListener myListener;
@@ -64,9 +70,7 @@ public class DashboardController implements Initializable {
     private Pokemon pokemon = Pokemon.getInstance();
 
 
-
-    public List<Pokemon> getData()
-    {
+    public List<Pokemon> getData() {
 
 
         try {
@@ -85,8 +89,7 @@ public class DashboardController implements Initializable {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             // Iterate over the result set
-            while (resultSet.next())
-            {
+            while (resultSet.next()) {
                 // Create a new Pokemon instance for each row
                 Pokemon pokemon = new Pokemon();
 
@@ -109,29 +112,6 @@ public class DashboardController implements Initializable {
 
                 pokemons.add(pokemon);
 
-//                System.out.println(pokemon.getid());
-//                System.out.println(pokemon.getColor());
-//                System.out.println(pokemon.getName());
-//                System.out.println(pokemon.getHp());
-//                System.out.println(pokemon.getAttack());
-//                System.out.println(pokemon.getDefense());
-//                System.out.println(pokemon.getSpecialAttack());
-//                System.out.println(pokemon.getSpecialDefense());
-//                System.out.println(pokemon.getSpeed());
-//                System.out.println(pokemon.getTotal());
-//                System.out.println(pokemon.getBio());
-//                System.out.println(pokemon.getSpecies());
-//                System.out.println(pokemon.getHeightinfo());
-//                System.out.println(pokemon.getWeight());
-//                System.out.println(pokemon.getAbility());
-//                System.out.println(pokemon.getCatchRate());
-////                System.out.println(resultSet.getString("Type"));
-//                System.out.println(resultSet.getString("Name"));
-//                System.out.println(resultSet.getString("bio"));
-//                System.out.println(resultSet.getString("species"));
-//                System.out.println(resultSet.getString("ability"));
-//                System.out.println(resultSet.getFloat("catchrate"));
-//                System.out.println(resultSet.getString("heightinfo"));
             }
 
             // Close resources
@@ -145,15 +125,14 @@ public class DashboardController implements Initializable {
         return pokemons;
     }
 
-    private void setChosenPokeomon(Pokemon pokemon)
-    {
-        id.setText("#00"+pokemon.getid());
+    private void setChosenPokemon(Pokemon pokemon) {
+        id.setText("#00" + pokemon.getid());
         pokemonnamelabel.setText(pokemon.getName());
-        pokemontotallabel.setText(""+ pokemon.getTotal());
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("detailed/"+pokemon.getName() + ".png")));
+        pokemontotallabel.setText("" + pokemon.getTotal());
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("detailed/" + pokemon.getName() + ".png")));
 
-        attack.setText(""+pokemon.getAttack());
-        defense.setText(""+pokemon.getDefense());
+        attack.setText("" + pokemon.getAttack());
+        defense.setText("" + pokemon.getDefense());
 
         pokeImg.setImage(image);
         chosenPokemonCard.setStyle("-fx-background-color: " + pokemon.getColor() + ";\n" +
@@ -161,21 +140,27 @@ public class DashboardController implements Initializable {
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources)
-    {
-        getData();
+    public void initialize(URL location, ResourceBundle resources) {
 
-        if (pokemons.size() > 0)
-        {
-            setChosenPokeomon(pokemons.get(0));
+//        searchButton = new Button();
+//
+//        searchBar = new TextField();
+        Setdata(getData());
+
+    }
+
+    private void Setdata(List<Pokemon> pokemons)
+    {
+        grid.getChildren().clear();
+        if (pokemons.size() > 0) {
+            setChosenPokemon(pokemons.get(0));
             pokemon.setData(pokemons.get(0));
 
             myListener = new MyListener() {
 
                 @Override
-                public void onClickListener(Pokemon __pokemon)
-                {
-                    setChosenPokeomon(__pokemon);
+                public void onClickListener(Pokemon __pokemon) {
+                    setChosenPokemon(__pokemon);
                     pokemon.setData(__pokemon);
                 }
 
@@ -186,33 +171,17 @@ public class DashboardController implements Initializable {
         int row = 1;
         try {
             System.out.println(pokemons.size());
-            for (int i = 0; i < pokemons.size(); i++)
-            {
+            for (int i = 0; i < pokemons.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("pokemon.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
 
                 InfoController infoController = fxmlLoader.getController();
 
-//                System.out.println(pokemons.get(i).getid());
-//                System.out.println(pokemons.get(i).getColor());
-//                System.out.println(pokemons.get(i).getName());
-//                System.out.println(pokemons.get(i).getHp());
-//                System.out.println(pokemons.get(i).getAttack());
-//                System.out.println(pokemons.get(i).getDefense());
-//                System.out.println(pokemons.get(i).getSpecialAttack());
-//                System.out.println(pokemons.get(i).getSpecialDefense());
-//                System.out.println(pokemons.get(i).getSpeed());
-//                System.out.println(pokemons.get(i).getTotal());
-//                System.out.println(pokemons.get(i).getBio());
-//                System.out.println(pokemons.get(i).getSpecies());
-                System.out.println(pokemons.get(i).getHeightinfo());
-//                System.out.println(pokemons.get(i).getWeight());
-//                System.out.println(pokemons.get(i).getAbility());
-//                System.out.println(pokemons.get(i).getCatchRate());
+//                System
 
 
-                infoController.setData(pokemons.get(i),myListener);
+                infoController.setData(pokemons.get(i), myListener);
 
                 if (column == 3) {
                     column = 0;
@@ -235,8 +204,8 @@ public class DashboardController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
 
+    }
 
 
     private void DetailsPage()
@@ -249,7 +218,7 @@ public class DashboardController implements Initializable {
 
             // Set up the primary stage
             Stage primaryStage = new Stage();
-            primaryStage.setScene(new Scene(root, 850, 800 )); // Set the scene with a specific width and height
+            primaryStage.setScene(new Scene(root, 850, 800)); // Set the scene with a specific width and height
             primaryStage.show(); // Display the window
         } catch (IOException e) {
             e.printStackTrace();
@@ -259,10 +228,137 @@ public class DashboardController implements Initializable {
     }
 
     @FXML
-    void onDetailesClicked(MouseEvent event)
-    {
-            DetailsPage();
+    void onDetailesClicked(MouseEvent event) {
+        String gg = searchBar.getText();
+        System.out.println("working? "+ gg);
+        DetailsPage();
     }
 
 
+    //Search bar
+
+    @FXML
+    void Search(MouseEvent event) throws SQLException
+    {
+        String keyword;
+
+        keyword = searchBar.getText();
+
+        List<Pokemon> pokemons_search = new ArrayList<>();
+
+        try
+        {
+            // Establish database connection
+            dbcontroller connection = new dbcontroller();
+            Connection connectDB = connection.getConnection();
+
+
+
+            System.out.println(keyword);
+
+            String fetchQuery;
+
+    //        page_info = "Search";
+            if (Objects.equals(keyword, ""))
+            {
+                fetchQuery = "SELECT * from pokemons";
+            }
+            else
+            {
+                keyword = Character.toUpperCase(keyword.charAt(0)) + keyword.substring(1);
+                fetchQuery = "SELECT * FROM pokemons WHERE Name LIKE '%" + keyword + "%' OR TYPE LIKE '%" + keyword + "%';";
+            }
+
+            // Create a PreparedStatement to execute the query
+            PreparedStatement preparedStatement = connectDB.prepareStatement(fetchQuery);
+
+            // Execute the query and get the result set
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Iterate over the result set
+            while (resultSet.next()) {
+                // Create a new Pokemon instance for each row
+                Pokemon pokemon = new Pokemon();
+
+                pokemon.setid(resultSet.getInt("id"));
+                pokemon.setType(resultSet.getString("Type"));
+                pokemon.setName(resultSet.getString("Name"));
+                pokemon.setHP(resultSet.getInt("HP"));
+                pokemon.setAttack(resultSet.getInt("Attack"));
+                pokemon.setDefense(resultSet.getInt("Defense"));
+                pokemon.setSpecialAttack(resultSet.getInt("Sp.Atk"));
+                pokemon.setSpecialDefense(resultSet.getInt("Sp.Def"));
+                pokemon.setSpeed(resultSet.getInt("Speed"));
+                pokemon.settotal(resultSet.getInt("Total"));
+                pokemon.setBio(resultSet.getString("bio"));
+                pokemon.setSpecies(resultSet.getString("species"));
+                pokemon.setHeightInfo(resultSet.getString("heightinfo"));
+                pokemon.setWeightInfo(resultSet.getString("weightinfo"));
+                pokemon.setSpecialAbility(resultSet.getString("ability"));
+                pokemon.setCatchRate(resultSet.getFloat("catchrate"));
+
+                pokemons_search.add(pokemon);
+
+                pokemons = pokemons_search;
+            }
+
+            // Close resources
+            resultSet.close();
+            preparedStatement.close();
+            connectDB.close();
+    }
+    catch(SQLException e)
+    {
+        e.printStackTrace();
+    }
+
+
+        Setdata(pokemons);
+    }
+
 }
+
+
+
+
+//        if(!pokemons_search.isEmpty()){
+//            setChosenPokemon(pokemons_search.getFirst());
+//            myListener = new MyListener() {
+//                @Override
+//                public void onClickListener(Pokemon pokemon) {
+//                    setChosenPokemon(pokemon);
+//                }
+//            };
+//        }
+//        grid.getChildren().clear();
+//        int column = 0;
+//        int row = 1;
+//
+//        try {
+//            for (int i = 0; i < pokemons_search.size(); i++) {
+//                FXMLLoader fxmlLoader = new FXMLLoader();
+//                fxmlLoader.setLocation(getClass().getResource("item.fxml"));
+//                AnchorPane anchorpane = fxmlLoader.load();
+//                InfoController itemcontroller = fxmlLoader.getController();
+//                itemcontroller.setData(pokemons_search.get(i), myListener);
+//                if (column == 3) {
+//                    column = 0;
+//                    row++;
+//                }
+////                anchorpane.setStyle("-fx-background-color: " + color_map.get(pokemons_search.get(i).type1) + ";");
+//                grid.add(anchorpane, column++, row);
+//                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+//                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+//                grid.setMaxWidth(Region.USE_PREF_SIZE);
+//
+//                //set grid height
+//                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+//                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+//                grid.setMaxHeight(Region.USE_PREF_SIZE);
+//
+//                GridPane.setMargin(anchorpane, new Insets(10));
+//
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
